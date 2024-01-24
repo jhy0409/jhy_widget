@@ -11,10 +11,22 @@
 <body>
   <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
   <script>
-    const pickerOptions = { onEmojiSelect: console.log }
-    const picker = new EmojiMart.Picker(pickerOptions)
-
-    document.body.appendChild(picker)
+    const pickerOptions = { 
+      onEmojiSelect: (emoji) => {
+        // 클립보드에 복사
+        navigator.clipboard.writeText(emoji.native)
+          .then(() => {
+            console.log('이모지가 클립보드에 복사되었습니다:', emoji.native);
+          })
+          .catch((error) => {
+            console.error('클립보드 복사 중 오류 발생:', error);
+          });
+      }
+    };
+  
+    const picker = new EmojiMart.Picker(pickerOptions);
+  
+    document.body.appendChild(picker);
   </script>
 </body>
 </html>
