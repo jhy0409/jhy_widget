@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
+
+    <!-- 나눔고딕 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+    <style>
+
+html {
+    background: transparent;
+}
+
+body{
+    background-color: rgba(255, 255, 255, 0);
+}
+  
+#timer {
+  color: #eeeeee;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Lato', sans-serif;
+  font-size: .7em;
+  letter-spacing: 5px;
+}
+
+.days, .hours, .minutes, .seconds {
+  display: inline-block;
+  padding: 20px;
+  width: 100px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.title {
+  text-align: center;
+  color: #525252;
+  font-size: 2.25em;
+
+  font-family: 'Nanum Gothic', sans-serif;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.nextIncome {
+  padding-bottom: 15px;
+  padding-top: 15px;
+  text-align: center;
+  color: #525252;
+  font-size: 1em;
+
+  font-family: 'Nanum Gothic', sans-serif;
+  letter-spacing: 2px;
+}
+
+.days {
+  background: #bce212;
+  color: #525252;
+}
+
+.hours {
+  background: #eeeeee;
+  color: #525252;
+}
+
+.minutes {
+  background: #eeeeee; /* a5a3ad */
+  color: #525252;
+}
+
+.seconds {
+  background:  #eeeeee; /* #F0A202; #276FBF;*/
+  color: #525252;
+}
+
+.numbers {
+  font-family: 'Montserrat', sans-serif;
+  color: #525252;
+  font-size: 4em;
+  text-align: center;
+}
+
+.white {
+  position: absolute;
+  background:  #eeeeee;
+  height: 85px;
+  width: 75px;
+  left: 30%;
+  top: 2%;
+}
+
+.red {
+  position: absolute;
+  background:  #EF2F3C;
+  left: 18%;
+  top: 9%;
+  height: 65px;
+  width: 70px;
+ 
+}
+
+.blue {
+  position: absolute;
+  background:  #276FBF;
+  height: 80px;
+  width: 80px;
+  left: 60%;
+  top: 5%;
+}
+
+
+    </style>
+</head>
+<body>
+    
+<div id="timer">
+    <div class="title" id="title">다음 급여일까지 D - </div>
+    <div class="nextIncome" id="nextIncome"> </div>
+    <div class="days"> 
+        <div id="days" class="numbers"> </div>일자</div> 
+      <div class="hours"> 
+        <div id="hours" class="numbers"> </div>시간</div> 
+      <div class="minutes"> 
+        <div id="minutes" class="numbers"> </div>분</div> 
+      <div class="seconds"> 
+        <div id="seconds" class="numbers"> </div>초</div> 
+      </div>
+</div>
+
+<script>
+var dateTest = new Date();
+let today = new Date(dateTest.getFullYear(), dateTest.getMonth(), dateTest.getDate(), 0, 0, 0);
+let nextIncomeDate = new Date(dateTest.getFullYear(), dateTest.getMonth(), 10, 0, 0, 0);
+
+// Adjust nextIncomeDate for the current month or the next month
+if (today.getDate() > 10) {
+    nextIncomeDate.setMonth(nextIncomeDate.getMonth() + 1);
+}
+
+function getFullYmdStr(day){
+    // 년월일시분초 문자열 생성
+    var d = day
+    var year = d.getFullYear() + "년 "
+    var month = (d.getMonth() + 1) + "월 "
+    var day = d.getDate() + "일 "
+    var hour = d.getHours() + "시 "
+    var min = d.getMinutes() + "분 " 
+    var sec = d.getSeconds() + "초 " 
+    var dayN = '일월화수목금토'.charAt(d.getUTCDay()) + '요일'
+    return year + month + day + hour + min + sec + dayN
+}
+
+// countdown
+let timer = setInterval(function() {
+    // get today's date
+    const now = new Date().getTime();
+
+    // get the difference
+    const diff = nextIncomeDate - now;
+
+    // math
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    // display
+    document.getElementById("days").innerHTML = days
+    document.getElementById("hours").innerHTML = hours
+    document.getElementById("minutes").innerHTML = minutes
+    document.getElementById("seconds").innerHTML = seconds
+
+    document.getElementById("title").innerHTML = '다음 급여일까지 D - ' + days + '일'
+    document.getElementById("nextIncome").innerHTML = getFullYmdStr(nextIncomeDate)
+}, 1000);
+
+</script>
+</body>
+</html>
