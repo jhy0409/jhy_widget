@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <style>
-    /* 추가된 CSS 스타일 */
     #toast-container {
       position: fixed;
       bottom: 0;
@@ -33,21 +32,19 @@
     }
 
     #toast-container p {
-      margin: 0; /* 텍스트의 기본 마진 제거 */
+      margin: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    #toast-container::before {
-      content: '';
-      display: block;
-      height: 4px; /* 상단 여백 */
-    }
-
+    #toast-container::before,
     #toast-container::after {
       content: '';
       display: block;
-      height: 4px; /* 하단 여백 */
+      height: 4px; /* 상단 및 하단 여백 */
     }
-
   </style>
   <title>이모지 선택기</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/emoji-mart.css" />
@@ -58,7 +55,7 @@
 <script>
   const showToast = (emoji) => {
     const toastContainer = document.getElementById('toast-container');
-    toastContainer.innerText = `선택한 이모지 '${emoji.native}'가 복사되었습니다.`;
+    toastContainer.innerHTML = `<p>선택한 이모지 '${emoji.native}'가 복사되었습니다.</p>`;
     toastContainer.style.display = 'block';
 
     setTimeout(() => {
