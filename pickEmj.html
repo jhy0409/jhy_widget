@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=360, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- 수정된 부분 -->
-  <title>이모지 선택기</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/emoji-mart.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <style>
     /* 추가된 CSS 스타일 */
     #toast-container {
       position: fixed;
-      bottom: 435px; /* 수정된 부분 */
+      bottom: 435px;
       left: 50%;
       transform: translateX(-50%);
       background-color: rgba(0, 0, 0, 0.3);
@@ -17,9 +15,19 @@
       padding: 10px;
       border-radius: 5px;
       display: none;
-      z-index: 9999; /* 맨 앞으로 보내기 위한 z-index 값 */
+      z-index: 9999;
+    }
+
+    @media (max-width: 360px) {
+      /* 화면이 360px 이하일 때만 적용되는 스타일 */
+      body {
+        max-width: 360px;
+        margin: 0 auto;
+      }
     }
   </style>
+  <title>이모지 선택기</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/emoji-mart.css" />
 </head>
 <body>
 
@@ -50,7 +58,6 @@
 
   const picker = new EmojiMart.Picker(pickerOptions);
 
-  // 추가된 메시지 컨테이너
   const toastContainer = document.createElement('div');
   toastContainer.id = 'toast-container';
   document.body.appendChild(toastContainer);
