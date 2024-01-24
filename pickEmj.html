@@ -1,32 +1,61 @@
-<!-- original https://codepen.io/lufutu/pen/gWygjW -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>emojis</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이모지 선택기</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/emoji-mart.css" />
+  <style>
+    /* 추가된 CSS 스타일 */
+    #toast-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
-  <script>
-    const pickerOptions = { 
-      onEmojiSelect: (emoji) => {
-        // 클립보드에 복사
-        navigator.clipboard.writeText(emoji.native)
-          .then(() => {
-            console.log('이모지가 클립보드에 복사되었습니다:', emoji.native);
-          })
-          .catch((error) => {
-            console.error('클립보드 복사 중 오류 발생:', error);
-          });
-      }
-    };
-  
-    const picker = new EmojiMart.Picker(pickerOptions);
-  
-    document.body.appendChild(picker);
-  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+<script>
+  const showToast = (emoji) => {
+    const toastContainer = document.getElementById('toast-container');
+    toastContainer.innerText = `선택한 이모지 '${emoji.native}'가 복사되었습니다.`;
+    toastContainer.style.display = 'block';
+
+    setTimeout(() => {
+      toastContainer.style.display = 'none';
+    }, 1500);
+  };
+
+  const pickerOptions = { 
+    onEmojiSelect: (emoji) => {
+      navigator.clipboard.writeText(emoji.native)
+        .then(() => {
+          console.log('이모지가 클립보드에 복사되었습니다:', emoji.native);
+          showToast(emoji);
+        })
+        .catch((error) => {
+          console.error('클립보드 복사 중 오류 발생:', error);
+        });
+    }
+  };
+
+  const picker = new EmojiMart.Picker(pickerOptions);
+
+  // 추가된 메시지 컨테이너
+  const toastContainer = document.createElement('div');
+  toastContainer.id = 'toast-container';
+  document.body.appendChild(toastContainer);
+
+  document.body.appendChild(picker);
+</script>
+
 </body>
 </html>
