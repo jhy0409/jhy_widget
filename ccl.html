@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC 라이선스 배지</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-auto h-auto flex flex-col md:flex-row items-center justify-center bg-gray-50 p-2">
+      <!-- 아이콘 4개 -->
+      <div class="flex flex-row items-center justify-center space-x-1">
+        <!-- CC 아이콘 (높이 맞춤) -->
+        <div class="flex flex-col items-center text-gray-500" style="height:41px; justify-content:flex-start;">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[41px] h-[41px]" viewBox="0 0 41 41" fill="none">
+            <circle cx="20.5" cy="20.5" r="19.4" stroke="#888" stroke-width="2.2" fill="none"/>
+            <text x="20.5" y="22" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#888" font-family="Arial, sans-serif" font-weight="700">CC</text>
+          </svg>
+        </div>
+        <!-- BY 아이콘 (사람 + 원) -->
+        <div class="flex flex-col items-center text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#888" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="10" r="2" stroke="#888" stroke-width="1.2" fill="none"/>
+            <rect x="10.5" y="12.5" width="3" height="4" rx="1.2" stroke="#888" stroke-width="1.2" fill="none"/>
+          </svg>
+          <span class="text-[10px] mt-[-2px]">BY</span>
+        </div>
+        <!-- NC 아이콘 (달러 텍스트 + 사선(우상향) 코드) -->
+        <div class="flex flex-col items-center text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#888" stroke-width="2" fill="none"/>
+            <text x="10.1" y="16" font-size="9" fill="#888" font-family="Arial, sans-serif">$</text>
+            <line x1="5" y1="19" x2="19" y2="5" stroke="#888" stroke-width="1.5"/>
+          </svg>
+          <span class="text-[10px] mt-[-2px]">NC</span>
+        </div>
+        <!-- ND 아이콘 (= + 원) -->
+        <div class="flex flex-col items-center text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#888" stroke-width="2" fill="none"/>
+            <rect x="8" y="10" width="8" height="1.5" rx="0.75" fill="#888"/>
+            <rect x="8" y="13" width="8" height="1.5" rx="0.75" fill="#888"/>
+          </svg>
+          <span class="text-[10px] mt-[-2px]">ND</span>
+        </div>
+      </div>
+      <!-- 안내문 -->
+      <div class="flex flex-col items-center md:items-start md:ml-3 mt-2 md:mt-0">
+        <div class="font-bold text-[14px] text-black text-center md:text-left leading-tight">
+          이 저작물은 별도 표시가 없는 한<br class="block md:hidden" /><span class="hidden md:inline"> </span>아래 조건에 따라 사용 가능합니다
+        </div>
+        <div class="text-[12px] text-gray-500 text-center md:text-left leading-tight mt-1">
+          <span class="block md:hidden leading-relaxed">
+            저작자 명시 필수<br/>
+            영리적 사용 불가<br/>
+            내용 변경 불가
+          </span>
+          <span class="hidden md:inline">
+            저작자 명시 필수 / 영리적 사용 불가 / 내용 변경 불가
+          </span>
+        </div>
+      </div>
+    </div>
+    
+</body>
+</html>
