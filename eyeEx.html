@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white min-h-screen w-full flex flex-col items-center justify-center transition-colors duration-300 md:px-0 px-4" id="body">
+<body class="bg-white md:min-h-screen h-auto w-full flex flex-col items-center justify-center transition-colors duration-300 md:px-0 px-4" id="body">
   <!-- 안내 메시지 -->
   <div id="tip" class="hidden absolute top-24 px-4 py-2 rounded-lg shadow bg-gray-100 text-gray-800">
     변화하는 크기를 의식하면서<br>
@@ -27,8 +27,8 @@
   </button>
 
   <!-- SVG 이미지 -->
-  <div class="w-full md:max-w-md flex justify-center my-8 md:max-h-[60vh] h-auto">
-    <img id="eyeImg" src="eye-b.svg" alt="eye" class="w-full h-auto md:max-h-[60vh] object-contain">
+  <div class="w-full md:max-w-md flex justify-center my-8">
+    <img id="eyeImg" src="eye-b.svg" alt="eye" class="w-full object-contain">
   </div>
 
   <!-- 토글 스위치 -->
