@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>눈운동</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.1); }
+      50% { transform: scale(1); }
+    }
+    .breathe {
+      animation: breathe 7s infinite ease-in-out;
+    }
+  </style>
+
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+
+</head>
+<body class="bg-white md:min-h-screen h-screen w-full flex flex-col items-center justify-center transition-colors duration-300 md:px-0 px-4" id="body">
+  <!-- 안내 메시지 -->
+  <div id="tip" class="hidden absolute top-24 px-4 py-2 rounded-lg shadow bg-gray-100 text-gray-800">
+    변화하는 크기를 의식하면서<br>
+    중심점을 놓치지 않으려 노력하시면<br>
+    초점잡는 능력이 향상됩니다
+  </div>
+  
+  <!-- 정보 버튼 -->
+  <button
+    data-tooltip-target="tooltip-bottom"
+    data-tooltip-placement="bottom"
+    type="button"
+    id="infoBtn"
+    class="absolute md:top-8 md:right-8 top-4 right-4 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300"
+    aria-label="정보"
+  >
+    <span class="text-gray-600 text-lg font-bold">i</span>
+  </button>
+
+  <!-- SVG 이미지 -->
+  <div class="w-full md:max-w-md flex justify-center my-8">
+    <img id="eyeImg" src="eye-b.svg" alt="eye" class="w-full object-contain breathe">
+  </div>
+
+  <!-- 토글 스위치 -->
+  <div class="flex items-center space-x-4 mt-8">
+    <span id="lightLabel" class="text-green-400 font-semibold">밝게</span>
+    <label class="relative inline-flex items-center cursor-pointer">
+      <input type="checkbox" id="toggleTheme" class="sr-only peer" onchange="toggleTheme()">
+      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-400 rounded-full peer dark:bg-gray-700 peer-checked:bg-green-400 transition-colors"></div>
+      <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full shadow peer-checked:translate-x-5 transition-transform"></div>
+    </label>
+    <span id="darkLabel" class="text-gray-500 font-semibold">어둡게</span>
+  </div>
+
+  <!-- 툴팁 (bottom) -->
+  <div id="tooltip-bottom" role="tooltip"
+    class="absolute z-10 invisible inline-block px-4 py-2 text-sm font-medium
+           text-gray-800 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 tooltip
+           dark:bg-gray-700 dark:text-white dark:border-gray-600"
+  >
+    변화하는 크기를 의식하면서<br>
+    중심점을 놓치지 않으려 노력하시면<br>
+    초점잡는 능력이 향상됩니다
+    <div class="tooltip-arrow" data-popper-arrow></div>
+  </div>
+
+  <!-- Flowbite JS (필수) -->
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/flowbite@2.2.1/dist/flowbite.min.js"></script>
+
+  <script>
+    function toggleTip() {
+      const tip = document.getElementById('tip');
+      tip.classList.toggle('hidden');
+    }
+
+    function toggleTheme() {
+      const isChecked = document.getElementById('toggleTheme').checked;
+      const body = document.getElementById('body');
+      const eyeImg = document.getElementById('eyeImg');
+      const tip = document.getElementById('tip');
+      const tooltipBottom = document.getElementById('tooltip-bottom');
+      const darkLabel = document.getElementById('darkLabel');
+      const lightLabel = document.getElementById('lightLabel');
+      const infoBtn = document.getElementById('infoBtn');
+      if (isChecked) {
+        // 다크모드
+        body.classList.remove('bg-white');
+        body.classList.add('bg-black');
+        eyeImg.src = 'eye-w.svg';
+
+        infoBtn.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+        infoBtn.classList.add('bg-gray-400', 'hover:bg-gray-500');
+
+        tip.classList.remove('bg-gray-100', 'text-gray-800', 'border-gray-200');
+        tip.classList.add('bg-gray-600', 'text-white', 'border-gray-600');
+        tooltipBottom.classList.remove('bg-white', 'text-gray-800', 'border-gray-200');
+        tooltipBottom.classList.add('bg-gray-600', 'text-white', 'border-gray-600');
+        darkLabel.classList.add('text-green-400');
+        darkLabel.classList.remove('text-gray-500');
+        lightLabel.classList.add('text-gray-500');
+        lightLabel.classList.remove('text-green-400');
+      } else {
+        // 라이트모드
+        body.classList.remove('bg-black');
+        body.classList.add('bg-white');
+        eyeImg.src = 'eye-b.svg';
+        
+        infoBtn.classList.remove('bg-gray-400', 'hover:bg-gray-500');
+        infoBtn.classList.add('bg-gray-200', 'hover:bg-gray-300');
+
+        tip.classList.remove('bg-gray-600', 'text-white', 'border-gray-600');
+        tip.classList.add('bg-gray-100', 'text-gray-800', 'border-gray-200');
+        tooltipBottom.classList.remove('bg-gray-600', 'text-white', 'border-gray-600');
+        tooltipBottom.classList.add('bg-white', 'text-gray-800', 'border-gray-200');
+        darkLabel.classList.remove('text-green-400');
+        darkLabel.classList.add('text-gray-500');
+        lightLabel.classList.remove('text-gray-500');
+        lightLabel.classList.add('text-green-400');
+      }
+    }
+  </script>
+</body>
+</html>   
