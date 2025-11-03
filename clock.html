@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apple-Style Clock with Mode Toggle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .clock {
+      aspect-ratio: 1/1;
+      width: 360px;
+      max-width: 90vw;
+      border-radius: 9999px;
+      background: white;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      position: relative;
+    }
+    .hand {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: bottom center;
+      transform: translate(-50%, 0) rotate(0deg);
+      border-radius: 9999px;
+      transition: transform 0.2s cubic-bezier(.4,2,.3,1);
+    }
+    .no-transition .hand { transition: none; }
+
+    /* 디지털 사각 시계 스타일 */
+    .digital-box {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+
+      width: 360px;
+      max-width: 90vw;
+    }
+    .digital-segment {
+      flex: 1;                      /* ✅ 동일한 비율로 자동 분할 */
+      aspect-ratio: 1.4 / 1;        /* ✅ 너비 대비 높이 비율 (가로형 박스) */
+      background: #1e293b;
+      color: white;
+      border-radius: 8px;
+      padding: 10px 0;            /* 좌우 여백을 줄이고 */
+      font-size: clamp(1rem, 9vw, 3rem); /* ✅ 반응형 폰트 크기 */
+      font-weight: 600;
+      font-family: 'Inter', monospace;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  </style>
+</head>
+
+<body class="font-sans bg-slate-50 min-h-screen flex flex-col items-center justify-center p-6 select-none">
+  <main class="text-center select-none">
+    <!-- 모드 선택 버튼 -->
+    <!-- <div class="mb-6 space-x-3">
+      <button id="btnAnalog" class="px-4 py-2 rounded-md bg-slate-900 text-white font-medium hover:bg-slate-700">원형</button>
+      <button id="btnDigital" class="px-4 py-2 rounded-md bg-white border border-slate-300 hover:bg-slate-100 font-medium">사각</button>
+    </div> -->
+
+
+    <!-- <div class="inline-flex rounded-md shadow-xs" role="group">
+      <button id="btnAnalog" type="button"
+        class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg
+               hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+        원형
+      </button>
+      <button id="btnDigital" type="button"
+        class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200
+               hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+        사각
+      </button>
+    </div> -->
+
+
+     <div class="inline-flex rounded-md shadow-xs mb-6" role="group">
+      <button id="btnAnalog" type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 
+      rounded-s-lg hover:bg-gray-100">
+        원형
+      </button>
+      <button id="btnDigital" type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-r border-gray-200 
+      rounded-e-lg hover:bg-gray-100">
+        사각
+      </button>
+    </div>
+    
+    
+    <!-- 원형 시계 -->
+    <div class="clock" id="clock">
+      <div id="ticks" class="absolute inset-0"></div>
+      <div id="numbers" class="absolute inset-0"></div>
+
+      <div id="hour" class="hand bg-slate-900"></div>
+      <div id="minute" class="hand bg-slate-700"></div>
+      <div id="second" class="hand bg-red-500"></div>
+
+      <div id="centerDot" class="absolute bg-slate-900 rounded-full"></div>
+    </div>
+
+    <!-- 디지털 시계 (텍스트 및 박스형 둘 다 지원) -->
+    <div id="digitalBox" class="digital-box hidden">
+      <div id="hBox" class="digital-segment">00</div>
+      <div id="mBox" class="digital-segment">00</div>
+      <div id="sBox" class="digital-segment">00</div>
+    </div>
+    <div id="digital" class="font-sans mt-6 font-mono text-md text-slate-700 select-text"></div>
+  </main>
+
+<script>
+  const clock = document.getElementById('clock');
+  const ticks = document.getElementById('ticks');
+  const numbers = document.getElementById('numbers');
+  const hourEl = document.getElementById('hour');
+  const minuteEl = document.getElementById('minute');
+  const secondEl = document.getElementById('second');
+  const centerDot = document.getElementById('centerDot');
+  const digital = document.getElementById('digital');
+  const digitalBox = document.getElementById('digitalBox');
+  const hBox = document.getElementById('hBox');
+  const mBox = document.getElementById('mBox');
+  const sBox = document.getElementById('sBox');
+
+  const btnAnalog = document.getElementById('btnAnalog');
+  const btnDigital = document.getElementById('btnDigital');
+
+  let mode = 'analog'; // 'analog' | 'digital'
+
+  btnAnalog.addEventListener('click', () => {
+    mode = 'analog';
+    clock.classList.remove('hidden');
+    digital.classList.remove('hidden');
+    digitalBox.classList.add('hidden');
+    btnAnalog.classList.add('!bg-slate-900','text-white');
+    btnAnalog.classList.remove('border-gray-200');
+    btnDigital.classList.remove('!bg-slate-900','text-white');
+    // btnDigital.classList.add('rounded-md');
+  });
+
+  btnDigital.addEventListener('click', () => {
+    mode = 'digital';
+    clock.classList.add('hidden');
+    digital.classList.remove('hidden');
+    digitalBox.classList.remove('hidden');
+    btnDigital.classList.add('!bg-slate-900','text-white');
+    btnDigital.classList.remove('border-gray-200');
+    btnAnalog.classList.remove('!bg-slate-900','text-white');
+    // btnAnalog.classList.add('rounded-md');
+  });
+
+  function renderTicks() {
+    ticks.innerHTML = '';
+    const rect = clock.getBoundingClientRect();
+    const radius = rect.width / 1.90;
+    const tickRadius = radius * 0.88;
+    for (let i = 0; i < 60; i++) {
+      const isHour = i % 5 === 0;
+      const el = document.createElement('div');
+      el.style.position = 'absolute';
+      el.style.left = '50%';
+      el.style.top = '48.25%';
+      el.style.width = `${radius * 0.008}px`;
+      el.style.height = isHour ? `${radius * 0.07}px` : `${radius * 0.03}px`;
+      el.style.background = '#1e293b';
+      el.style.transformOrigin = 'center center';
+      el.style.transform = `rotate(${i * 6}deg) translateY(-${tickRadius}px)`;
+      ticks.appendChild(el);
+    }
+  }
+
+  function positionNumbers() {
+    numbers.innerHTML = '';
+    const rect = clock.getBoundingClientRect();
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const radius = rect.width * 0.40;
+    for (let n = 1; n <= 12; n++) {
+      const el = document.createElement('div');
+      el.textContent = n;
+      el.className = 'absolute font-semibold text-slate-900';
+      const angle = (n / 12) * Math.PI * 2 - Math.PI / 2;
+      el.style.left = (cx + Math.cos(angle) * radius) + 'px';
+      el.style.top = (cy + Math.sin(angle) * radius) + 'px';
+      el.style.transform = 'translate(-50%, -50%)';
+      el.style.fontSize = (rect.width * 0.07) + 'px';
+      numbers.appendChild(el);
+    }
+  }
+
+  function resizeHands() {
+    const rect = clock.getBoundingClientRect();
+    const radius = rect.width / 2;
+    hourEl.style.width = `${radius * 0.025}px`;
+    hourEl.style.height = `${radius * 0.5}px`;
+    minuteEl.style.width = `${radius * 0.018}px`;
+    minuteEl.style.height = `${radius * 0.7}px`;
+    secondEl.style.width = `${radius * 0.008}px`;
+    secondEl.style.height = `${radius * 0.85}px`;
+    centerDot.style.width = `${radius * 0.06}px`;
+    centerDot.style.height = `${radius * 0.06}px`;
+    centerDot.style.top = `calc(50% - ${radius * 0.03}px)`;
+    centerDot.style.left = `calc(50% - ${radius * 0.03}px)`;
+  }
+
+  function getKST() {
+    return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+  }
+
+  function updateClock() {
+    const now = getKST();
+    const sec = now.getSeconds();
+    const min = now.getMinutes();
+    const hour = now.getHours() % 12;
+    secondEl.style.transform = `translate(-50%, -100%) rotate(${sec * 6}deg)`;
+    minuteEl.style.transform = `translate(-50%, -100%) rotate(${(min + sec / 60) * 6}deg)`;
+    hourEl.style.transform = `translate(-50%, -100%) rotate(${(hour + min / 60 + sec / 3600) * 30}deg)`;
+
+    const pad = n => String(n).padStart(2, '0');
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const date = now.getDate();
+    const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+    const weekday = weekdays[now.getDay()];
+    const hours24 = now.getHours();
+    const ampm = hours24 >= 12 ? '오후' : '오전';
+    const hh12 = hours24 % 12 === 0 ? 12 : hours24 % 12;
+    const mm = pad(min);
+    const ss = pad(sec);
+    const tzOffsetMinutes = -now.getTimezoneOffset();
+    const tzOffsetHours = tzOffsetMinutes / 60;
+    const tzSign = tzOffsetHours >= 0 ? '+' : '-';
+    const tzString = `GMT${tzSign}${Math.abs(tzOffsetHours)}`;
+    digital.textContent = `${year}년 ${month}월 ${date}일 (${weekday}) ${ampm} ${pad(hh12)}:${mm}:${ss} (${tzString})`;
+
+    // // 사각 모드에서는 digitalInfo에 출력, 아니면 숨김
+    // if (mode === 'digital') {
+    //   digitalInfo.textContent = digital.textContent;
+    //   digitalInfo.classList.remove('hidden');
+    //   digital.classList.add('hidden');
+    // } else {
+    //   digital.classList.remove('hidden');
+    //   digitalInfo.classList.add('hidden');
+    // }
+
+    // 기존 사각 시계 시간 업데이트
+    hBox.textContent = pad(hh12);
+    mBox.textContent = mm;
+    sBox.textContent = ss;
+  }
+
+  function renderAll() {
+    renderTicks();
+    positionNumbers();
+    resizeHands();
+    updateClock();
+  }
+
+  window.addEventListener('resize', renderAll);
+  window.addEventListener('load', () => {
+    renderAll();
+    clock.classList.add('no-transition');
+    setTimeout(() => clock.classList.remove('no-transition'), 50);
+    setInterval(updateClock, 1000);
+  });
+</script>
+</body>
+</html>
