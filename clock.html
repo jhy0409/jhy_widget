@@ -201,7 +201,7 @@
     return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
   }
 
-  let totalSeconds = (getKST().getSeconds() + getKST().getMilliseconds() / 1000) - 1;
+  let totalSeconds = getKST().getSeconds() + getKST().getMilliseconds() / 1000;
 
   function updateClock() {
     const now = getKST();
@@ -259,5 +259,6 @@
 </script>
 </body>
 </html>
+
 
 
