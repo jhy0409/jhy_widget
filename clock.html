@@ -99,7 +99,7 @@
       <div id="mBox" class="digital-segment">00</div>
       <div id="sBox" class="digital-segment">00</div>
     </div>
-    <div id="digital" class="font-sans mt-6 font-mono text-md text-slate-700 select-text"></div>
+    <div id="digital" class="font-sans mt-6 font-mono text-md text-slate-700 select-text dark:text-white"></div>
   </main>
 
 <script>
@@ -202,6 +202,7 @@
   }
 
   let totalSeconds = getKST().getSeconds() + getKST().getMilliseconds() / 1000;
+  let isFirstCall = true;
 
   function updateClock() {
     const now = getKST();
@@ -209,9 +210,26 @@
     const min = now.getMinutes();
     const hour = now.getHours() % 12;
 
-    // 초침 누적 각도 계산 (초침 튐 방지)
-    totalSeconds += 1; // 1초마다 호출되므로 1초씩 증가
-    // 초침 회전
+    // 초침 각도 계산 (누적 방식으로 360도 넘어가도 계속 증가)
+    // 첫 번째 호출(초기화)에서는 증가시키지 않음
+    if (isFirstCall) {
+      isFirstCall = false;
+      totalSeconds = sec; // 초기값을 실제 시간으로 설정
+    } else {
+      // setInterval이 1초마다 호출되므로 매번 1초 증가
+      totalSeconds += 1;
+    }
+    
+    // 실제 시간과 동기화 (오차 보정)
+    // totalSeconds의 초 부분이 실제 시간과 1초 이상 차이나면 동기화
+    const baseSec = Math.floor(totalSeconds) % 60;
+    const actualSec = Math.floor(sec);
+    if (Math.abs(baseSec - actualSec) > 1) {
+      // 차이가 크면 실제 시간으로 동기화하되 누적값 유지 (60초 단위로)
+      totalSeconds = Math.floor(totalSeconds / 60) * 60 + sec;
+    }
+    
+    // 초침 회전 (360도 이상으로 계속 증가하여 transition이 자연스럽게 작동)
     secondEl.style.transform = `translate(-50%, -100%) rotate(${totalSeconds * 6}deg)`;
 
     // 시침, 분침 회전 (부드럽게)
@@ -254,7 +272,18 @@
     renderAll();
     clock.classList.add('no-transition');
     setTimeout(() => clock.classList.remove('no-transition'), 50);
-    setInterval(updateClock, 1000);
+    
+    // 정확한 타이밍을 위해 실제 시간의 다음 초 시작 시점에 맞춰 호출
+    function scheduleNextUpdate() {
+      const now = getKST();
+      const msUntilNextSecond = 1000 - now.getMilliseconds();
+      setTimeout(() => {
+        updateClock();
+        // 이후에는 setInterval로 1초마다 호출
+        setInterval(updateClock, 1000);
+      }, msUntilNextSecond);
+    }
+    scheduleNextUpdate();
   });
 </script>
 </body>
