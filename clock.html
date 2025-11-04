@@ -63,27 +63,6 @@
 
 <body class="font-sans bg-slate-50 min-h-screen flex flex-col items-center justify-center p-6 select-none">
   <main class="text-center select-none">
-    <!-- 모드 선택 버튼 -->
-    <!-- <div class="mb-6 space-x-3">
-      <button id="btnAnalog" class="px-4 py-2 rounded-md bg-slate-900 text-white font-medium hover:bg-slate-700">원형</button>
-      <button id="btnDigital" class="px-4 py-2 rounded-md bg-white border border-slate-300 hover:bg-slate-100 font-medium">사각</button>
-    </div> -->
-
-
-    <!-- <div class="inline-flex rounded-md shadow-xs" role="group">
-      <button id="btnAnalog" type="button"
-        class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg
-               hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
-        원형
-      </button>
-      <button id="btnDigital" type="button"
-        class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200
-               hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
-        사각
-      </button>
-    </div> -->
-
-
      <div class="inline-flex rounded-md shadow-xs mb-6" role="group">
       <button id="btnAnalog" type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 
       rounded-s-lg hover:bg-gray-100">
@@ -168,7 +147,7 @@
       const el = document.createElement('div');
       el.style.position = 'absolute';
       el.style.left = '50%';
-      el.style.top = '48.25%';
+      el.style.top = '48.45%';
       el.style.width = `${radius * 0.008}px`;
       el.style.height = isHour ? `${radius * 0.07}px` : `${radius * 0.03}px`;
       el.style.background = '#1e293b';
@@ -216,16 +195,25 @@
     return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
   }
 
+  let totalSeconds = (getKST().getSeconds() + getKST().getMilliseconds() / 1000) - 1;
+
   function updateClock() {
     const now = getKST();
-    const sec = now.getSeconds();
+    const sec = now.getSeconds() + now.getMilliseconds() / 1000;
     const min = now.getMinutes();
     const hour = now.getHours() % 12;
-    secondEl.style.transform = `translate(-50%, -100%) rotate(${sec * 6}deg)`;
+
+    // 초침 누적 각도 계산 (초침 튐 방지)
+    totalSeconds += 1; // 1초마다 호출되므로 1초씩 증가
+    // 초침 회전
+    secondEl.style.transform = `translate(-50%, -100%) rotate(${totalSeconds * 6}deg)`;
+
+    // 시침, 분침 회전 (부드럽게)
     minuteEl.style.transform = `translate(-50%, -100%) rotate(${(min + sec / 60) * 6}deg)`;
     hourEl.style.transform = `translate(-50%, -100%) rotate(${(hour + min / 60 + sec / 3600) * 30}deg)`;
-
-    const pad = n => String(n).padStart(2, '0');
+    
+    // 나머지 디지털 시계 업데이트
+    const pad = n => String(Math.floor(n)).padStart(2, '0');
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
     const date = now.getDate();
@@ -242,21 +230,11 @@
     const tzString = `GMT${tzSign}${Math.abs(tzOffsetHours)}`;
     digital.textContent = `${year}년 ${month}월 ${date}일 (${weekday}) ${ampm} ${pad(hh12)}:${mm}:${ss} (${tzString})`;
 
-    // // 사각 모드에서는 digitalInfo에 출력, 아니면 숨김
-    // if (mode === 'digital') {
-    //   digitalInfo.textContent = digital.textContent;
-    //   digitalInfo.classList.remove('hidden');
-    //   digital.classList.add('hidden');
-    // } else {
-    //   digital.classList.remove('hidden');
-    //   digitalInfo.classList.add('hidden');
-    // }
-
-    // 기존 사각 시계 시간 업데이트
+    // 디지털 박스 업데이트
     hBox.textContent = pad(hh12);
     mBox.textContent = mm;
     sBox.textContent = ss;
-  }
+}
 
   function renderAll() {
     renderTicks();
