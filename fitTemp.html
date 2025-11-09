@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>기온 별 옷차림</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body {
@@ -47,7 +48,7 @@
         <div class="flex flex-col items-center justify-center" style="width: 266.76px; height: 87.9px; gap: 5.9px; padding: 0;">
             <div class="flex items-center justify-center gap-1">
                 <span id="location" class="font-medium" style="font-size: 23.22px; line-height: 30.2px; color: #434444;">대구</span>
-                <img id="weatherIcon" src="날씨/sun.svg" alt="날씨" class="w-3 h-3">
+                <i id="weatherIcon" class="fas fa-sun" style="font-size: 23.22px; color: #FFA500;"></i>
                 <span id="weatherStatus" class="font-medium" style="font-size: 23.22px; line-height: 30.2px; color: #434444;">맑음</span>
             </div>
             <div class="text-center">
@@ -304,6 +305,87 @@
             'haze': '연무'
         };
         
+        // 날씨 상태에 따른 Font Awesome 아이콘 매핑 (main 필드 기반)
+        const weatherIconMapByMain = {
+            'clear': 'fa-sun',
+            'clouds': 'fa-cloud',
+            'rain': 'fa-cloud-rain',
+            'drizzle': 'fa-cloud-rain',
+            'thunderstorm': 'fa-bolt',
+            'snow': 'fa-snowflake',
+            'mist': 'fa-smog',
+            'fog': 'fa-smog',
+            'haze': 'fa-smog',
+            'dust': 'fa-smog',
+            'sand': 'fa-smog',
+            'ash': 'fa-smog',
+            'squall': 'fa-wind',
+            'tornado': 'fa-tornado'
+        };
+        
+        // description 기반 매핑 (더 세밀한 구분용)
+        const weatherIconMapByDescription = {
+            'clear sky': 'fa-sun',
+            'few clouds': 'fa-cloud-sun',
+            'scattered clouds': 'fa-cloud',
+            'broken clouds': 'fa-cloud',
+            'overcast clouds': 'fa-cloud',
+            'shower rain': 'fa-cloud-showers-heavy',
+            'light rain': 'fa-cloud-rain',
+            'moderate rain': 'fa-cloud-rain',
+            'heavy rain': 'fa-cloud-showers-heavy',
+            'light snow': 'fa-snowflake',
+            'moderate snow': 'fa-snowflake',
+            'heavy snow': 'fa-snowflake'
+        };
+        
+        // 날씨 상태에 따른 아이콘 색상 매핑
+        const weatherColorMap = {
+            'clear': '#FFA500',           // 맑음: 주황색
+            'clouds': '#6B7280',          // 구름: 회색
+            'rain': '#3B82F6',            // 비: 파란색
+            'drizzle': '#60A5FA',         // 이슬비: 밝은 파란색
+            'thunderstorm': '#F59E0B',    // 천둥번개: 노란색
+            'snow': '#93C5FD',            // 눈: 하늘색
+            'mist': '#9CA3AF',            // 안개: 회색
+            'fog': '#9CA3AF',             // 안개: 회색
+            'haze': '#A78BFA',            // 연무: 보라색
+            'dust': '#D97706',            // 먼지: 갈색
+            'sand': '#D97706',            // 모래: 갈색
+            'ash': '#6B7280',             // 재: 회색
+            'squall': '#4B5563',          // 돌풍: 어두운 회색
+            'tornado': '#7C2D12'          // 토네이도: 어두운 갈색
+        };
+        
+        // 날씨 아이콘 업데이트 함수
+        function updateWeatherIcon(mainDescription, detailedDescription) {
+            const iconElement = document.getElementById('weatherIcon');
+            if (!iconElement) return;
+            
+            // 기존 클래스 제거 (fa-sun, fa-cloud 등)
+            iconElement.className = 'fas';
+            
+            // 먼저 detailed description으로 시도, 없으면 main으로
+            let iconClass = weatherIconMapByDescription[detailedDescription];
+            let mainDesc = mainDescription ? mainDescription.toLowerCase() : null;
+            
+            if (!iconClass && mainDesc) {
+                iconClass = weatherIconMapByMain[mainDesc];
+            }
+            
+            // 기본값
+            if (!iconClass) {
+                iconClass = 'fa-sun';
+                mainDesc = 'clear';
+            }
+            
+            iconElement.classList.add(iconClass);
+            
+            // 색상 업데이트
+            const color = weatherColorMap[mainDesc] || '#434444';
+            iconElement.style.color = color;
+        }
+        
         // 날씨 정보 가져오기 (OpenWeatherMap)
         async function fetchWeatherData(city = 'Daegu') {
             // API 키가 설정되지 않은 경우
@@ -352,6 +434,8 @@
                 return {
                     temp: temp,
                     description: koreanDescription,
+                    originalDescription: description, // 아이콘 매핑을 위해 원본 description도 반환
+                    mainDescription: mainDescription, // main 필드 (Clear, Clouds, Rain 등)
                     city: data.name === 'Daegu' ? '대구' : data.name
                 };
             } catch (error) {
@@ -378,6 +462,11 @@
             
             if (weatherStatusElement) {
                 weatherStatusElement.textContent = weatherData.description;
+            }
+            
+            // 날씨 아이콘 업데이트
+            if (weatherData.mainDescription || weatherData.originalDescription) {
+                updateWeatherIcon(weatherData.mainDescription, weatherData.originalDescription);
             }
         }
 
