@@ -220,8 +220,8 @@
             [20, 22],        // 2: 22~20℃
             [17, 19],        // 3: 19~17℃
             [12, 16],        // 4: 16~12℃
-            [9, 11.999],     // 5: 11~9℃ (11.5도 포함을 위해 11.999까지)
-            [5, 8.999],      // 6: 8~5℃
+            [9, 11.999],     // 5: 11~9℃ (9도 이상 11.999도 이하)
+            [5, 8.999],      // 6: 8~5℃ (5도 이상 8.999도 미만, 9도 미만)
             [-Infinity, 4.999]   // 7: 4℃ 이하
         ];
 
@@ -234,11 +234,13 @@
             }
             
             // 범위를 순회하면서 매칭되는 첫 번째 범위 반환
+            // 높은 온도부터 낮은 온도 순서로 체크하므로 겹치는 범위가 있어도 우선순위가 높은 범위가 먼저 매칭됨
             for (let i = 0; i < tempRanges.length; i++) {
                 const [min, max] = tempRanges[i];
                 // Infinity 체크
                 const minCheck = min === -Infinity ? true : numTemp >= min;
-                const maxCheck = max === Infinity ? true : numTemp <= max;
+                // 인덱스 6 (8~5℃)는 9도 미만이어야 하므로 < 9로 체크
+                const maxCheck = max === Infinity ? true : (i === 6 ? numTemp < 9 : numTemp <= max);
                 
                 if (minCheck && maxCheck) {
                     return i;
