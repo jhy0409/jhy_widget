@@ -205,28 +205,35 @@
 
     <script>
         // 온도 범위 정의 (index: [min, max])
+        // 주의: 범위는 min <= temp <= max 형태로 정의
         const tempRanges = [
             [28, Infinity],  // 0: 28℃ 이상
             [23, 27],        // 1: 27~23℃
             [20, 22],        // 2: 22~20℃
             [17, 19],        // 3: 19~17℃
             [12, 16],        // 4: 16~12℃
-            [9, 11],         // 5: 11~9℃
-            [5, 8],          // 6: 8~5℃
-            [-Infinity, 4]   // 7: 4℃ 이하
+            [9, 11.999],     // 5: 11~9℃ (11.5도 포함을 위해 11.999까지)
+            [5, 8.999],      // 6: 8~5℃
+            [-Infinity, 4.999]   // 7: 4℃ 이하
         ];
 
         // 현재 온도에 해당하는 범위 찾기
         function getTempRangeIndex(temp) {
+            // 온도를 숫자로 변환 (문자열일 경우 대비)
+            const numTemp = parseFloat(temp);
+            if (isNaN(numTemp)) {
+                return 8; // 기본값
+            }
+            
             for (let i = 0; i < tempRanges.length; i++) {
                 const [min, max] = tempRanges[i];
-                if (temp >= min && temp <= max) {
+                if (numTemp >= min && numTemp <= max) {
                     return i;
                 }
             }
             // 기본값 (가장 가까운 범위)
-            // if (temp > 28) return 0;
-            // if (temp < 4) return 7;
+            if (numTemp > 28) return 0;
+            if (numTemp < 4) return 7;
             return 8; // 기본값
         }
 
