@@ -55,7 +55,7 @@
         <div class="flex flex-col items-center justify-center" style="width: 266.76px; height: 87.9px; gap: 5.9px; padding: 0;">
             <div class="flex items-center justify-center gap-1">
                 <span id="location" class="font-medium dark:text-white text-neutral-600" style="font-size: 23.22px; line-height: 30.2px;">대구</span>
-                <i id="weatherIcon" class="fas fa-sun" style="font-size: 23.22px; color: #FFA500;"></i>
+                <i id="weatherIcon" class="fas fa-sun text-orange-500 dark:text-orange-400" style="font-size: 23.22px;"></i>
                 <span id="weatherStatus" class="font-medium dark:text-white text-neutral-600" style="font-size: 23.22px; line-height: 30.2px;">맑음</span>
             </div>
             <div class="text-center">
@@ -97,8 +97,9 @@
                 <!-- Right: Clothing Recommendations (Frame 9) -->
                 <div id="clothingContainer" class="flex flex-col overflow-y-auto hide-scrollbar" style="width: 191.09px; height: 158px; gap: 7.51px; padding: 0; margin-left: 7.51px;">
                 <!-- Row 1: 28℃ 이상 -->
-                <div data-temp-range="0" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] flex-shrink-0 overflow-hidden" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 237, 233, 0.5);">
-                    <div class="font-normal text-center" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; color: #6E777C; mix-blend-mode: multiply; margin-top: 5.96px;">
+                <div data-temp-range="0" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 237, 233, 0.5);">
+                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
                         <div>민소매, 반팔, 반바지</div>
                         <div>짧은 치마, 린넨 옷</div>
                     </div>
@@ -110,8 +111,9 @@
                 </div>
 
                 <!-- Row 2: 27~23℃ -->
-                <div data-temp-range="1" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] flex-shrink-0 overflow-hidden" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 236, 222, 0.5);">
-                    <div class="font-normal text-center" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; color: #6E777C; mix-blend-mode: multiply; margin-top: 5.96px;">
+                <div data-temp-range="1" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 236, 222, 0.5);">
+                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
                         <div>반팔, 얇은 셔츠</div>
                         <div>반바지, 면바지</div>
                     </div>
@@ -123,8 +125,9 @@
                 </div>
 
                 <!-- Row 3: 22~20℃ -->
-                <div data-temp-range="2" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] flex-shrink-0 overflow-hidden" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 237, 213, 0.5);">
-                    <div class="font-normal text-center" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; color: #6E777C; mix-blend-mode: multiply; margin-top: 5.96px;">
+                <div data-temp-range="2" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 237, 213, 0.5);">
+                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
                         <div>블라우스, 긴팔 티,</div>
                         <div>면바지, 슬랙스</div>
                     </div>
@@ -136,8 +139,9 @@
                 </div>
 
                 <!-- Row 4: 19~17℃ -->
-                <div data-temp-range="3" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] flex-shrink-0 overflow-hidden" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(253, 246, 217, 0.5);">
-                    <div class="font-normal text-center" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; color: #6E777C; mix-blend-mode: multiply; margin-top: 5.96px;">
+                <div data-temp-range="3" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(253, 246, 217, 0.5);">
+                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
                         <div>얇은 가디건이나 니트</div>
                         <div>맨투맨, 후드, 긴 바지</div>
                     </div>
@@ -149,8 +153,9 @@
                 </div>
 
                 <!-- Row 5: 16~12℃ -->
-                <div data-temp-range="4" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] flex-shrink-0 overflow-hidden" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(236, 239, 212, 0.5);">
-                    <div class="font-normal text-center" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; color: #6E777C; mix-blend-mode: multiply; margin-top: 5.96px;">
+                <div data-temp-range="4" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(236, 239, 212, 0.5);">
+                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
                         <div>자켓, 가디건, 청자켓</div>
                         <div>니트, 스타킹, 청바지</div>
                     </div>
@@ -162,8 +167,9 @@
                 </div>
 
                 <!-- Row 6: 11~9℃ -->
-                <div data-temp-range="5" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] flex-shrink-0 overflow-hidden" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(218, 232, 232, 0.5);">
-                    <div class="font-normal text-center" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; color: #6E777C; mix-blend-mode: multiply; margin-top: 5.96px;">
+                <div data-temp-range="5" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(218, 232, 232, 0.5);">
+                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
                         <div>트렌치 코트, 야상,</div>
                         <div>점퍼, 스타킹, 기모바지</div>
                     </div>
@@ -175,8 +181,9 @@
                 </div>
 
                 <!-- Row 7: 8~5℃ -->
-                <div data-temp-range="6" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] flex-shrink-0 overflow-hidden" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(208, 233, 240, 0.5);">
-                    <div class="font-normal text-center" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; color: #6E777C; mix-blend-mode: multiply; margin-top: 5.96px;">
+                <div data-temp-range="6" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(208, 233, 240, 0.5);">
+                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
                         <div>울 코트, 히트텍,</div>
                         <div>가죽 옷, 기모</div>
                     </div>
@@ -188,8 +195,9 @@
                 </div>
 
                 <!-- Row 8: 4℃ 이하 -->
-                <div data-temp-range="7" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] flex-shrink-0 overflow-hidden" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(224, 230, 242, 0.5);">
-                    <div class="font-normal text-center" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; color: #6E777C; mix-blend-mode: multiply; margin-top: 5.96px;">
+                <div data-temp-range="7" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(224, 230, 242, 0.5);">
+                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
                         <div>패딩, 두꺼운 코트,</div>
                         <div>누빔 옷, 기모, 목도리</div>
                     </div>
@@ -356,22 +364,22 @@
             'heavy snow': 'fa-snowflake'
         };
         
-        // 날씨 상태에 따른 아이콘 색상 매핑
+        // 날씨 상태에 따른 아이콘 색상 매핑 (Tailwind CSS 클래스)
         const weatherColorMap = {
-            'clear': '#FFA500',           // 맑음: 주황색
-            'clouds': '#6B7280',          // 구름: 회색
-            'rain': '#3B82F6',            // 비: 파란색
-            'drizzle': '#60A5FA',         // 이슬비: 밝은 파란색
-            'thunderstorm': '#F59E0B',    // 천둥번개: 노란색
-            'snow': '#93C5FD',            // 눈: 하늘색
-            'mist': '#9CA3AF',            // 안개: 회색
-            'fog': '#9CA3AF',             // 안개: 회색
-            'haze': '#A78BFA',            // 연무: 보라색
-            'dust': '#D97706',            // 먼지: 갈색
-            'sand': '#D97706',            // 모래: 갈색
-            'ash': '#6B7280',             // 재: 회색
-            'squall': '#4B5563',          // 돌풍: 어두운 회색
-            'tornado': '#7C2D12'          // 토네이도: 어두운 갈색
+            'clear': 'text-orange-500 dark:text-orange-400',           // 맑음: 주황색
+            'clouds': 'text-gray-500 dark:text-gray-400',              // 구름: 회색
+            'rain': 'text-blue-500 dark:text-blue-400',                 // 비: 파란색
+            'drizzle': 'text-blue-400 dark:text-blue-300',              // 이슬비: 밝은 파란색
+            'thunderstorm': 'text-yellow-500 dark:text-yellow-400',    // 천둥번개: 노란색
+            'snow': 'text-sky-300 dark:text-sky-200',                   // 눈: 하늘색
+            'mist': 'text-gray-400 dark:text-gray-300',                 // 안개: 회색
+            'fog': 'text-gray-400 dark:text-gray-300',                  // 안개: 회색
+            'haze': 'text-purple-400 dark:text-purple-300',             // 연무: 보라색
+            'dust': 'text-amber-600 dark:text-amber-500',               // 먼지: 갈색
+            'sand': 'text-amber-600 dark:text-amber-500',               // 모래: 갈색
+            'ash': 'text-gray-500 dark:text-gray-400',                  // 재: 회색
+            'squall': 'text-gray-600 dark:text-gray-500',                // 돌풍: 어두운 회색
+            'tornado': 'text-amber-800 dark:text-amber-700'              // 토네이도: 어두운 갈색
         };
         
         // 날씨 아이콘 업데이트 함수
@@ -379,8 +387,9 @@
             const iconElement = document.getElementById('weatherIcon');
             if (!iconElement) return;
             
-            // 기존 클래스 제거 (fa-sun, fa-cloud 등)
-            iconElement.className = 'fas';
+            // 기존 Font Awesome 아이콘 클래스 제거 (fa-sun, fa-cloud 등)
+            const allIconClasses = Object.values(weatherIconMapByMain).concat(Object.values(weatherIconMapByDescription));
+            allIconClasses.forEach(cls => iconElement.classList.remove(cls));
             
             // 먼저 detailed description으로 시도, 없으면 main으로
             let iconClass = weatherIconMapByDescription[detailedDescription];
@@ -396,11 +405,19 @@
                 mainDesc = 'clear';
             }
             
-            iconElement.classList.add(iconClass);
+            // Font Awesome 아이콘 클래스 추가
+            iconElement.classList.add('fas', iconClass);
             
-            // 색상 업데이트
-            const color = weatherColorMap[mainDesc] || '#434444';
-            iconElement.style.color = color;
+            // 색상 업데이트 (Tailwind CSS 클래스 사용)
+            const colorClasses = weatherColorMap[mainDesc] || 'text-gray-600 dark:text-gray-400';
+            // 기존 인라인 스타일 제거
+            iconElement.style.color = '';
+            // 기존 색상 관련 클래스 제거 (모든 weatherColorMap 값에서 클래스 추출)
+            Object.values(weatherColorMap).forEach(classes => {
+                classes.split(' ').forEach(cls => iconElement.classList.remove(cls));
+            });
+            // 새로운 색상 클래스 추가
+            colorClasses.split(' ').forEach(cls => iconElement.classList.add(cls));
         }
         
         // 날씨 정보 가져오기 (OpenWeatherMap)
