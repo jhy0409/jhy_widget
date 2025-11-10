@@ -41,174 +41,181 @@
     </style>
 </head>
 <body class="bg-transparent flex items-center justify-center h-screen p-4">
-    <div 
-    class="widget-container rounded-[26.81px] shadow-2xl 
-    overflow-hidden flex flex-col justify-between dark:bg-slate-500" 
-    style="box-shadow: 0 0 8px -1px rgba(0, 0, 0, 0.2), 0 0 5px -1px rgba(0, 0, 0, 0.1); padding: 18.23px 16.62px;">
-        <!-- Header -->
-        <!-- <div class="text-center pt-6 pb-4">
-            <p class="text-sm text-gray-600 mb-1 font-medium">한 장으로 마스터하자!</p>
-            <h1 class="text-xl font-bold text-gray-800">기온 별 옷차림</h1>
-        </div> -->
+    <div class="flex flex-col items-center">
+        <div 
+        class="widget-container rounded-[26.81px] shadow-2xl 
+        overflow-hidden flex flex-col justify-between dark:bg-slate-500" 
+        style="box-shadow: 0 0 8px -1px rgba(0, 0, 0, 0.2), 0 0 5px -1px rgba(0, 0, 0, 0.1); padding: 18.23px 16.62px;">
+            <!-- Header -->
+            <!-- <div class="text-center pt-6 pb-4">
+                <p class="text-sm text-gray-600 mb-1 font-medium">한 장으로 마스터하자!</p>
+                <h1 class="text-xl font-bold text-gray-800">기온 별 옷차림</h1>
+            </div> -->
 
-        <!-- Weather Info -->
-        <div class="flex flex-col items-center justify-center" style="width: 266.76px; height: 87.9px; gap: 5.9px; padding: 0;">
-            <div class="flex items-center justify-center gap-1">
-                <span id="location" class="font-medium dark:text-white text-neutral-600" style="font-size: 23.22px; line-height: 30.2px;">대구</span>
-                <i id="weatherIcon" class="fas fa-sun text-orange-500 dark:text-orange-400" style="font-size: 23.22px;"></i>
-                <span id="weatherStatus" class="font-medium dark:text-white text-neutral-600" style="font-size: 23.22px; line-height: 30.2px;">맑음</span>
+            <!-- Weather Info -->
+            <div class="flex flex-col items-center justify-center" style="width: 266.76px; height: 87.9px; gap: 5.9px; padding: 0;">
+                <div class="flex items-center justify-center gap-1">
+                    <span id="location" class="font-medium dark:text-white text-neutral-600" style="font-size: 23.22px; line-height: 30.2px;">대구</span>
+                    <i id="weatherIcon" class="fas fa-sun text-orange-500 dark:text-orange-400" style="font-size: 23.22px;"></i>
+                    <span id="weatherStatus" class="font-medium dark:text-white text-neutral-600" style="font-size: 23.22px; line-height: 30.2px;">맑음</span>
+                </div>
+                <div class="text-center">
+                    <span id="temperature" class="font-medium text-neutral-600 dark:text-white" style="font-size: 56.94px; line-height: 50.6px;">13.3°</span>
+                </div>
             </div>
-            <div class="text-center">
-                <span id="temperature" class="font-medium text-neutral-600 dark:text-white" style="font-size: 56.94px; line-height: 50.6px;">13.3°</span>
-            </div>
-        </div>
 
-        <!-- Main Content (Frame 7) -->
-        <div class="flex flex-col" style="width: 266.76px; height: 158px; gap: 7.51px; padding: 0;">
-            <!-- Horizontal container for thermometer and clothing -->
-            <div class="flex items-start relative" style="flex: 1;">
-                <!-- Left: Temperature Gradient Bar (Frame 16) -->
-                <div class="flex flex-col relative" style="width: 68.16px; height: 158px; gap: 0.54px; padding: 0;">
-                    <!-- Temperature bar container with labels -->
-                    <div class="relative" style="flex: 1;">
-                        <!-- Temperature bar (thermometer) -->
-                        <div class="absolute" style="left: 0; top: 0; width: 9.12px; height: 151.43px;">
-                            <div class="temp-bar relative w-full h-full"></div>
-                        </div>
-                        
-                        <!-- Bottom circle (thermometer bulb) - overlaps with bar bottom, in front -->
-                        <div class="absolute" style="left: -2.38px; top: 141.14px; width: 14.27px; height: 14.29px; border-radius: 50%; background-color: #157EC4; z-index: 10;"></div>
-                        
-                        <!-- Temperature labels on the right of bar - space between -->
-                        <div id="tempLabels" class="absolute flex flex-col justify-between font-normal" style="left: 21.99px; top: 0; width: 53.35px; height: 151.43px; font-size: 11.45px; line-height: 19.7px; letter-spacing: -0.04em;">
-                            <div data-temp-index="0">28℃ 이상</div>
-                            <div data-temp-index="1">27~23℃</div>
-                            <div data-temp-index="2">22~20℃</div>
-                            <div data-temp-index="3">19~17℃</div>
+            <!-- Main Content (Frame 7) -->
+            <div class="flex flex-col" style="width: 266.76px; height: 158px; gap: 7.51px; padding: 0;">
+                <!-- Horizontal container for thermometer and clothing -->
+                <div class="flex items-start relative" style="flex: 1;">
+                    <!-- Left: Temperature Gradient Bar (Frame 16) -->
+                    <div class="flex flex-col relative" style="width: 68.16px; height: 158px; gap: 0.54px; padding: 0;">
+                        <!-- Temperature bar container with labels -->
+                        <div class="relative" style="flex: 1;">
+                            <!-- Temperature bar (thermometer) -->
+                            <div class="absolute" style="left: 0; top: 0; width: 9.12px; height: 151.43px;">
+                                <div class="temp-bar relative w-full h-full"></div>
+                            </div>
                             
-                            <div data-temp-index="4">16~12℃</div>
-                            <div data-temp-index="5">11~9℃</div>
-                            <div data-temp-index="6">8~5℃</div>
-                            <div data-temp-index="7">4℃ 이하</div>
+                            <!-- Bottom circle (thermometer bulb) - overlaps with bar bottom, in front -->
+                            <div class="absolute" style="left: -2.38px; top: 141.14px; width: 14.27px; height: 14.29px; border-radius: 50%; background-color: #157EC4; z-index: 10;"></div>
+                            
+                            <!-- Temperature labels on the right of bar - space between -->
+                            <div id="tempLabels" class="absolute flex flex-col justify-between font-normal" style="left: 21.99px; top: 0; width: 53.35px; height: 151.43px; font-size: 11.45px; line-height: 19.7px; letter-spacing: -0.04em;">
+                                <div data-temp-index="0">28℃ 이상</div>
+                                <div data-temp-index="1">27~23℃</div>
+                                <div data-temp-index="2">22~20℃</div>
+                                <div data-temp-index="3">19~17℃</div>
+                                
+                                <div data-temp-index="4">16~12℃</div>
+                                <div data-temp-index="5">11~9℃</div>
+                                <div data-temp-index="6">8~5℃</div>
+                                <div data-temp-index="7">4℃ 이하</div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Right: Clothing Recommendations (Frame 9) -->
-                <div id="clothingContainer" class="flex flex-col overflow-y-auto hide-scrollbar" style="width: 191.09px; height: 158px; gap: 7.51px; padding: 0; margin-left: 7.51px;">
-                <!-- Row 1: 28℃ 이상 -->
-                <div data-temp-range="0" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
-                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 237, 233, 0.5);">
-                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
-                        <div>민소매, 반팔, 반바지</div>
-                        <div>짧은 치마, 린넨 옷</div>
+                    <!-- Right: Clothing Recommendations (Frame 9) -->
+                    <div id="clothingContainer" class="flex flex-col overflow-y-auto hide-scrollbar" style="width: 191.09px; height: 158px; gap: 7.51px; padding: 0; margin-left: 7.51px;">
+                    <!-- Row 1: 28℃ 이상 -->
+                    <div data-temp-range="0" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                    flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 237, 233, 0.5);">
+                        <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
+                            <div>민소매, 반팔, 반바지</div>
+                            <div>짧은 치마, 린넨 옷</div>
+                        </div>
+                        <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
+                            <img src="옷/1 28도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
+                            <img src="옷/1 28도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
+                            <img src="옷/1 28도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
+                        </div>
                     </div>
-                    <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
-                        <img src="옷/1 28도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
-                        <img src="옷/1 28도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
-                        <img src="옷/1 28도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
-                    </div>
-                </div>
 
-                <!-- Row 2: 27~23℃ -->
-                <div data-temp-range="1" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
-                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 236, 222, 0.5);">
-                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
-                        <div>반팔, 얇은 셔츠</div>
-                        <div>반바지, 면바지</div>
+                    <!-- Row 2: 27~23℃ -->
+                    <div data-temp-range="1" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                    flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 236, 222, 0.5);">
+                        <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
+                            <div>반팔, 얇은 셔츠</div>
+                            <div>반바지, 면바지</div>
+                        </div>
+                        <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
+                            <img src="옷/2 27도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
+                            <img src="옷/2 27도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
+                            <img src="옷/2 27도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
+                        </div>
                     </div>
-                    <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
-                        <img src="옷/2 27도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
-                        <img src="옷/2 27도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
-                        <img src="옷/2 27도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
-                    </div>
-                </div>
 
-                <!-- Row 3: 22~20℃ -->
-                <div data-temp-range="2" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
-                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 237, 213, 0.5);">
-                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
-                        <div>블라우스, 긴팔 티,</div>
-                        <div>면바지, 슬랙스</div>
+                    <!-- Row 3: 22~20℃ -->
+                    <div data-temp-range="2" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                    flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(255, 237, 213, 0.5);">
+                        <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
+                            <div>블라우스, 긴팔 티,</div>
+                            <div>면바지, 슬랙스</div>
+                        </div>
+                        <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
+                            <img src="옷/3 22도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
+                            <img src="옷/3 22도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
+                            <img src="옷/3 22도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
+                        </div>
                     </div>
-                    <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
-                        <img src="옷/3 22도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
-                        <img src="옷/3 22도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
-                        <img src="옷/3 22도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
-                    </div>
-                </div>
 
-                <!-- Row 4: 19~17℃ -->
-                <div data-temp-range="3" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
-                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(253, 246, 217, 0.5);">
-                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
-                        <div>얇은 가디건이나 니트</div>
-                        <div>맨투맨, 후드, 긴 바지</div>
+                    <!-- Row 4: 19~17℃ -->
+                    <div data-temp-range="3" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                    flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(253, 246, 217, 0.5);">
+                        <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
+                            <div>얇은 가디건이나 니트</div>
+                            <div>맨투맨, 후드, 긴 바지</div>
+                        </div>
+                        <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
+                            <img src="옷/4 19도 (1).png" alt="옷1" class="h-[34px] w-auto object-contain">
+                            <img src="옷/4 19도 (2).png" alt="옷2" class="h-[34px] w-auto object-contain">
+                            <img src="옷/4 19도 (3).png" alt="옷3" class="h-[34px] w-auto object-contain">
+                        </div>
                     </div>
-                    <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
-                        <img src="옷/4 19도 (1).png" alt="옷1" class="h-[34px] w-auto object-contain">
-                        <img src="옷/4 19도 (2).png" alt="옷2" class="h-[34px] w-auto object-contain">
-                        <img src="옷/4 19도 (3).png" alt="옷3" class="h-[34px] w-auto object-contain">
-                    </div>
-                </div>
 
-                <!-- Row 5: 16~12℃ -->
-                <div data-temp-range="4" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
-                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(236, 239, 212, 0.5);">
-                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
-                        <div>자켓, 가디건, 청자켓</div>
-                        <div>니트, 스타킹, 청바지</div>
+                    <!-- Row 5: 16~12℃ -->
+                    <div data-temp-range="4" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                    flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(236, 239, 212, 0.5);">
+                        <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
+                            <div>자켓, 가디건, 청자켓</div>
+                            <div>니트, 스타킹, 청바지</div>
+                        </div>
+                        <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
+                            <img src="옷/5 16도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
+                            <img src="옷/5 16도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
+                            <img src="옷/5 16도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
+                        </div>
                     </div>
-                    <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
-                        <img src="옷/5 16도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
-                        <img src="옷/5 16도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
-                        <img src="옷/5 16도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
-                    </div>
-                </div>
 
-                <!-- Row 6: 11~9℃ -->
-                <div data-temp-range="5" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
-                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(218, 232, 232, 0.5);">
-                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
-                        <div>트렌치 코트, 야상,</div>
-                        <div>점퍼, 스타킹, 기모바지</div>
+                    <!-- Row 6: 11~9℃ -->
+                    <div data-temp-range="5" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                    flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(218, 232, 232, 0.5);">
+                        <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
+                            <div>트렌치 코트, 야상,</div>
+                            <div>점퍼, 스타킹, 기모바지</div>
+                        </div>
+                        <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
+                            <img src="옷/6 11도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
+                            <img src="옷/6 11도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
+                            <img src="옷/6 11도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
+                        </div>
                     </div>
-                    <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
-                        <img src="옷/6 11도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
-                        <img src="옷/6 11도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
-                        <img src="옷/6 11도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
-                    </div>
-                </div>
 
-                <!-- Row 7: 8~5℃ -->
-                <div data-temp-range="6" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
-                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(208, 233, 240, 0.5);">
-                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
-                        <div>울 코트, 히트텍,</div>
-                        <div>가죽 옷, 기모</div>
+                    <!-- Row 7: 8~5℃ -->
+                    <div data-temp-range="6" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                    flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(208, 233, 240, 0.5);">
+                        <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
+                            <div>울 코트, 히트텍,</div>
+                            <div>가죽 옷, 기모</div>
+                        </div>
+                        <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
+                            <img src="옷/7 8도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
+                            <img src="옷/7 8도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
+                            <img src="옷/7 8도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
+                        </div>
                     </div>
-                    <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
-                        <img src="옷/7 8도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
-                        <img src="옷/7 8도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
-                        <img src="옷/7 8도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
-                    </div>
-                </div>
 
-                <!-- Row 8: 4℃ 이하 -->
-                <div data-temp-range="7" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
-                flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(224, 230, 242, 0.5);">
-                    <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
-                        <div>패딩, 두꺼운 코트,</div>
-                        <div>누빔 옷, 기모, 목도리</div>
-                    </div>
-                    <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
-                        <img src="옷/8 4도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
-                        <img src="옷/8 4도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
-                        <img src="옷/8 4도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
+                    <!-- Row 8: 4℃ 이하 -->
+                    <div data-temp-range="7" class="clothing-row flex flex-col items-center gap-1 pt-[3px] pb-[0.51px] px-2 rounded-[10.72px] 
+                    flex-shrink-0 overflow-hidden dark:text-slate-600 text-slate-600/80 mix-blend-multiply dark:mix-blend-normal" style="width: 191.09px; height: 75.25px; box-sizing: border-box; background-color: rgba(224, 230, 242, 0.5);">
+                        <div class="font-normal text-center mix-blend-multiply dark:mix-blend-normal" style="font-size: 12.33px; line-height: 15.78px; letter-spacing: -0.02em; margin-top: 5.96px;">
+                            <div>패딩, 두꺼운 코트,</div>
+                            <div>누빔 옷, 기모, 목도리</div>
+                        </div>
+                        <div class="flex flex-shrink-0 mt-auto justify-between" style="width: 128.14px; height: 51.47px;">
+                            <img src="옷/8 4도 (1).png" alt="옷1" class="h-[37px] w-auto object-contain">
+                            <img src="옷/8 4도 (2).png" alt="옷2" class="h-[37px] w-auto object-contain">
+                            <img src="옷/8 4도 (3).png" alt="옷3" class="h-[37px] w-auto object-contain">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    
+    <div class="text-center mt-1" style="width: 300px;">
+        <a href="https://youtube.com/@hhttt2" target="_blank" 
+        class="text-[13px] text-gray-400 hover:text-gray-500 dark:text-gray-100/50 dark:hover:text-gray-200">youtube.com/@hhttt2</a>
     </div>
 
     <script>
